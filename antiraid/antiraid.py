@@ -32,7 +32,7 @@ class Antiraid:
 
     @antiraid.group(pass_context=True, no_pm=True)
     async def slowmode(self, ctx):
-        """Slowmode settings.\nChannels that have slowmode enabled will delete a users messages if they posted less than 5 seconds from their last one. This inculdes messages deleted via slowmode. \nNote, any user who has the "manage_messages" for the channel set to true is exempt from being slowed."""
+        """Slowmode settings.\nChannels that have slowmode enabled will delete a users messages if they posted less than 3 days from their last one. This inculdes messages deleted via slowmode. \nNote, any user who has the "manage_messages" for the channel set to true is exempt from being slowed."""
         if ctx.invoked_subcommand is None or \
                 isinstance(ctx.invoked_subcommand, commands.Group):
             await send_cmd_help(ctx)
@@ -174,12 +174,12 @@ class Antiraid:
 
             data = self.sm_cache[channel.id][author.id]
             LastMsgTime = data["LastMsgTime"]
-            if (ts - data["LastMsgTime"]) < timedelta(seconds = 5):
+            if (ts - data["LastMsgTime"]) < timedelta(seconds = 259200):
                 try:
                     await self.bot.delete_message(message)
                     data["Counter"] += 1
                     if data["Counter"] == 3:
-                        msg = "\n:no_entry:**Slowmode notices**:no_entry: \n ```diff\n Hold your horses!\n- This channel is in slowmode! Please wait 5 seconds between sending messages.\n Thank you!```\n{}".format(author.mention)
+                        msg = "\n:no_entry:**Slowmode notices**:no_entry: \n ```diff\n Hold your horses!\n- This channel is in slowmode! Please wait 3 days between sending messages.\n Thank you!```\n{}".format(author.mention)
                         await self.bot.send_message(channel, msg)
                     data["LastMsgTime"] = ts
                     self.sm_cache[channel.id][author.id] = data
