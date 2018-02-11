@@ -236,7 +236,7 @@ class Rolemaster:
 
             await self.role_add_remove(member, to_add, to_remove)
 
-            await self.bot.say("Role in roleset %s switched to %s."
+            await self.bot.say("%s role switched to %s."
                                % (roleset, role.name))
 
         except XORoleException as e:
