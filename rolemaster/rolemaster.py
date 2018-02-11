@@ -32,7 +32,6 @@ class Rolemaster:
     def __init__(self, bot):
         self.bot = bot
         self.settings = dataIO.load_json(JSON)
-        self.analytics = CogAnalytics(self)
 
     def save(self):
         dataIO.save_json(JSON, self.settings)
