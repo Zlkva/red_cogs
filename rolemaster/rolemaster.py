@@ -272,6 +272,7 @@ class Rolemaster:
         except XORoleException as e:
             await self.bot.say(warning(*e.args))
 '''
+
     @commands.group(pass_context=True, no_pm=True)
     async def rolemasterset(self, ctx):
         if ctx.invoked_subcommand is None:
