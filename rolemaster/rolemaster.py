@@ -241,7 +241,37 @@ class Rolemaster:
 
         except XORoleException as e:
             await self.bot.say(warning(*e.args))
+'''
+    @rolemaster.command(name='remove', pass_context=True)
+    async def rolemaster_remove(self, ctx, *, role_or_roleset: str):
+        "Removes a specific server role from you."
+        server = ctx.message.server
+        member = ctx.message.author
 
+        try:
+            role = self.find_role(server, role_or_roleset, notfound_ok=True)
+            if role:
+                if role not in member.roles:
+                    await self.bot.say("You don't have that role; nothing to do.")
+                    return
+
+                to_remove = [role]
+
+            else:
+                to_remove = self.get_roleset_memberships(member, role_or_roleset)
+
+            if to_remove:
+                await self.role_add_remove(member, to_remove=to_remove)
+                plural = 'roles' if len(to_remove) > 1 else 'role'
+                rlist = ', '.join(r.name for r in to_remove)
+                await self.bot.say('Removed the %s: %s.' % (plural, rlist))
+            else:
+                await self.bot.say("You don't belong to any roles in the %s "
+                                   "roleset." % role_or_roleset)
+
+        except XORoleException as e:
+            await self.bot.say(warning(*e.args))
+'''
     @commands.group(pass_context=True, no_pm=True)
     async def rolemasterset(self, ctx):
         if ctx.invoked_subcommand is None:
@@ -427,11 +457,6 @@ class Rolemaster:
 
         except XORoleException as e:
             await self.bot.say(warning(*e.args))
-
-    async def on_command(self, command, ctx):
-        if ctx.cog is self:
-            self.analytics.command(ctx)
-
 
 def setup(bot):
     if not dataIO.is_valid_json(JSON):
