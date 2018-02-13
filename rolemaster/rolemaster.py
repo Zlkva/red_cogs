@@ -6,7 +6,6 @@ from .utils.chat_formatting import box, pagify, warning
 import asyncio
 from collections import defaultdict
 
-f
 JSON = 'data/rolemaster.json'
 
 class XORoleException(Exception):
