@@ -240,7 +240,7 @@ class Rolemaster:
 
         except XORoleException as e:
             await self.bot.say(warning(*e.args))
-
+'''
     @rolemaster.command(name='remove', pass_context=True)
     async def rolemaster_remove(self, ctx, *, role_or_roleset: str):
         "Removes a specific server role from you."
@@ -270,6 +270,7 @@ class Rolemaster:
 
         except XORoleException as e:
             await self.bot.say(warning(*e.args))
+'''
 
     @commands.group(pass_context=True, no_pm=True)
     async def rolemasterset(self, ctx):
