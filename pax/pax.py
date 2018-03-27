@@ -25,15 +25,15 @@ class paxcheck:
             soup2 = BeautifulSoup(r.content, 'html.parser')
             for datapull in soup.findAll("h3"):
 
-                if "2017" in datapull.text:
+                if "2018" in datapull.text:
                     pulledtext = datapull.text
                     embed = discord.Embed(title="**No Changes Yet**", description=pulledtext, color=self.red)
                     await self.bot.say(embed=embed)
                     time.sleep(1800)
 
-                elif "2018" in datapull.text:
+                elif "2017" in datapull.text:
                     pulledtext = datapull.text
-                    sayme = "@everyone"
+                    sayme = "@everyone "
                     sayme += pulledtext
                     embed = discord.Embed(title=":tada: **IT'S TIME** :tada:", description=sayme, color=self.green)
                     await self.bot.say(embed=embed)
