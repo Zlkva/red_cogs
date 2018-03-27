@@ -3,8 +3,6 @@ from discord.ext import commands
 import requests
 from bs4 import BeautifulSoup
 import re
-import signal
-import sys
 import time
 
 class paxcheck:
