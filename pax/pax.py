@@ -42,3 +42,6 @@ class paxcheck:
                     time.sleep(10)
                 else:
                     break
+
+def setup(bot):
+    bot.add_cog(paxcheck(bot))
