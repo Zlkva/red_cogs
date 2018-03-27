@@ -20,7 +20,7 @@ class paxcheck:
             self.blue = discord.Color.blue()
 
     @commands.command()
-        async def pax(self):
+    async def pax(self):
 
         while run:
             website = 'http://www.paxsite.com/'
@@ -29,18 +29,18 @@ class paxcheck:
             soup2 = BeautifulSoup(r.content, 'html.parser')
             for datapull in soup.findAll("h3"):
 
-            if "2017" in datapull.text:
-                pulledtext = datapull.text
-                embed = discord.Embed(title="**No Changes Yet**", description=pulledtext, color=self.red)
-                await self.bot.say(embed=embed)
-                time.sleep(1800)
+                if "2017" in datapull.text:
+                    pulledtext = datapull.text
+                    embed = discord.Embed(title="**No Changes Yet**", description=pulledtext, color=self.red)
+                    await self.bot.say(embed=embed)
+                    time.sleep(1800)
 
-            elif "2018" in datapull.text:
-                pulledtext = datapull.text
-                sayme = "@everyone"
-                sayme =+ pulledtext
-                embed = discord.Embed(title=":tada: **IT'S TIME** :tada:", description=sayme, color=self.green)
-                await self.bot.say(embed=embed)
-                time.sleep(10)
-            else:
-                break
+                elif "2018" in datapull.text:
+                    pulledtext = datapull.text
+                    sayme = "@everyone"
+                    sayme += pulledtext
+                    embed = discord.Embed(title=":tada: **IT'S TIME** :tada:", description=sayme, color=self.green)
+                    await self.bot.say(embed=embed)
+                    time.sleep(10)
+                else:
+                    break
