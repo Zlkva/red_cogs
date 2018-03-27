@@ -8,8 +8,6 @@ import time
 class paxcheck:
     """Checks paxsite.como for West date changes"""
 
-    run = True
-
     def __init__(self, bot):
             self.bot = bot
             self.green = discord.Color.green()
@@ -20,7 +18,7 @@ class paxcheck:
     @commands.command()
     async def pax(self):
 
-        while run:
+        while True:
             website = 'http://www.paxsite.com/'
             r = requests.get(website)
             soup = BeautifulSoup(r.content, 'html.parser')
